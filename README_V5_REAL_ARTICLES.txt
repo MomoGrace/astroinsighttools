@@ -1,0 +1,1 @@
+V5 real content patch. Upload ONLY articles.html, sitemap.xml, and the articles folder. No _redirects included. This package overwrites the old template article pages and adds noindex canonical aliases for a few old V4 URLs that may have been opened before.
