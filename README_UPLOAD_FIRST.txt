@@ -1,18 +1,17 @@
-AstroInsightTools Advanced Astrology Tools - Public Clean Full HTML
+AstroInsightTools V9 Public Clean Input Fix Full HTML
 
-This is a complete static HTML site, not a patch.
+Complete static HTML site, not a patch.
 
-Public-facing cleanup:
-- Removed internal wording such as "V9" from website pages.
-- Removed "0 API cost" from the homepage and tool pages.
-- Replaced technical wording with visitor-friendly phrases such as "browser-based tools".
-- Keeps the advanced astrology tools, guides, legal pages, sitemap, robots.txt and ads.txt.
+What changed:
+- Birth Time Unknown Guide now has user inputs.
+- Birth Chart Reading Checklist now has user inputs.
+- Removed guide-only feeling from those two tools.
+- Public wording stays clean: no V9 wording, no API-cost wording.
+- Keeps all tools, articles, legal pages, sitemap, robots.txt and ads.txt.
 
-Recommended upload method:
+Upload:
 1. GitHub Desktop > Show in Explorer.
-2. Delete old visible files in the repo folder, but do not delete the hidden .git folder.
-3. Copy all contents of this unzipped folder into the repo root.
-4. Commit message: Clean public wording for advanced astrology tools
+2. Delete old visible files, but do not delete hidden .git.
+3. Copy all contents of this folder into repo root.
+4. Commit message: Improve guide tools with user inputs
 5. Push origin.
-6. Wait for Cloudflare Pages to redeploy.
-7. If homepage still looks old, hard refresh with Ctrl + F5 and check /index.html.

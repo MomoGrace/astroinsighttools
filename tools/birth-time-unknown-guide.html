@@ -37,13 +37,25 @@
 <main class="tool-wrap">
   <section class="tool-panel">
     <h2>Your details</h2>
-    <p class="muted">This guide tool explains what remains reliable when birth time is missing.</p>
-<button class="calc-btn" onclick="runAdvancedTool('advancedBirthTime')">Generate Guide</button>
+    <label>Birth date</label>
+<input id="birthDateUnknown" type="date">
+<label>Birth time status</label>
+<select id="timeStatus">
+  <option>I do not know my birth time</option>
+  <option>I only know morning / afternoon / night</option>
+  <option>I know an approximate time</option>
+  <option>I know the exact time</option>
+</select>
+<label>Birth place, optional</label>
+<input id="birthPlaceUnknown" placeholder="Example: Kuala Lumpur, Malaysia">
+<label>Main question</label>
+<textarea id="mainQuestion" placeholder="Example: Can I still know my Moon sign or Rising sign?"></textarea>
+<button class="calc-btn" onclick="runAdvancedTool('advancedBirthTime')">Generate Personal Guide</button>
     <div class="note"><strong>Important:</strong> This tool interprets information you provide. It does not calculate a precise natal chart. For entertainment and self-reflection only.</div>
   </section>
   <section class="result-panel">
-    <h2>Your advanced interpretation will appear here</h2>
-    <div id="result"><p class="muted">Choose your options and generate a report-style interpretation.</p></div>
+    <h2>Your result will appear here</h2>
+    <div id="result"><p class="muted">Enter your details and generate a personalized birth-time guide.</p></div>
   </section>
 </main>
 <section class="content">

@@ -37,13 +37,28 @@
 <main class="tool-wrap">
   <section class="tool-panel">
     <h2>Your details</h2>
-    <p class="muted">This guide tool does not require birth data. Click below to generate a structured chart-reading checklist.</p>
-<button class="calc-btn" onclick="runAdvancedTool('advancedChecklist')">Generate Checklist</button>
+    <label>Reading level</label>
+<select id="chartLevel">
+  <option>Beginner</option>
+  <option>Intermediate</option>
+  <option>I already know my basic placements</option>
+</select>
+<label>Main focus</label>
+<select id="chartFocus">
+  <option>Self-understanding</option>
+  <option>Love and relationships</option>
+  <option>Career direction</option>
+  <option>Emotional patterns</option>
+  <option>Personal growth</option>
+</select>
+<label>Placements you already know</label>
+<textarea id="knownPlacements" placeholder="Example: Sun in Libra, Moon in Cancer, Venus in Scorpio"></textarea>
+<button class="calc-btn" onclick="runAdvancedTool('advancedChecklist')">Generate Personal Checklist</button>
     <div class="note"><strong>Important:</strong> This tool interprets information you provide. It does not calculate a precise natal chart. For entertainment and self-reflection only.</div>
   </section>
   <section class="result-panel">
-    <h2>Your advanced interpretation will appear here</h2>
-    <div id="result"><p class="muted">Choose your options and generate a report-style interpretation.</p></div>
+    <h2>Your result will appear here</h2>
+    <div id="result"><p class="muted">Enter your details and generate a personalized reading checklist.</p></div>
   </section>
 </main>
 <section class="content">

@@ -158,12 +158,19 @@ function runAdvancedTool(type){
     <div class="result-card"><h3>Life area affected</h3><p>This placement suggests that ${p.domain} becomes visible through ${houseMeanings[house]||houseMeanings[1]}.</p><h3>Strength</h3><p>You may bring strong awareness or energy into this life area.</p><h3>Growth advice</h3><p>${p.growth}. Ask: ${p.question}</p></div>`);
   }
   if(type==="advancedChecklist"){
-    render(`<div class="result-card"><h2>Natal Chart Reading Checklist</h2><p>Read a chart in layers. Do not try to understand every symbol at once.</p></div>
-    <div class="result-card"><h3>Step-by-step order</h3>${list(["Sun: identity and life direction","Moon: emotional needs and comfort","Rising: outer style and first approach","Mercury: thinking and communication","Venus: love, attraction and pleasure","Mars: action, desire and conflict","Houses: where themes show up in life","Aspects: how planets interact"])}<h3>Best practice</h3><p>Write one sentence per layer before combining everything.</p></div>`);
+    const level=getVal("chartLevel")||"Beginner";
+    const focus=getVal("chartFocus")||"Self-understanding";
+    const known=getVal("knownPlacements")||"Sun sign";
+    render(`<div class="result-card"><h2>Your Natal Chart Reading Plan</h2><p>This checklist is tailored for a ${level.toLowerCase()} reader focusing on ${focus.toLowerCase()}.</p></div>
+    <div class="result-card"><h3>Start with what you already know</h3><p>You entered: ${known}. Begin there instead of trying to read the whole chart at once.</p><h3>Step-by-step order</h3>${list(["Sun: identity and life direction","Moon: emotional needs and comfort","Rising: outer style and first approach","Mercury: thinking and communication","Venus: love, attraction and pleasure","Mars: action, desire and conflict","Houses: where themes show up in life","Aspects: how planets interact"])}<h3>Best practice</h3><p>Write one sentence per layer. Then choose one pattern that actually helps your current ${focus.toLowerCase()} reflection.</p></div>`);
   }
   if(type==="advancedBirthTime"){
-    render(`<div class="result-card"><h2>If Birth Time Is Unknown</h2><p>You can still read some parts of a chart, but not everything accurately.</p></div>
-    <div class="result-card"><h3>You can usually still read</h3>${list(["Sun sign","Many planet sign placements","General element balance","Some broad personality themes"])}<h3>Uncertain or unavailable</h3>${list(["Rising sign / Ascendant","House positions","Midheaven","Time-sensitive Moon sign in some cases"])}<h3>Best next step</h3><p>Use a noon chart for learning only, or search birth records if you need a precise chart.</p></div>`);
+    const date=getVal("birthDateUnknown")||"your birth date";
+    const timeStatus=getVal("timeStatus")||"I do not know my birth time";
+    const place=getVal("birthPlaceUnknown")||"your birth place";
+    const question=getVal("mainQuestion")||"which parts of my chart can I still read?";
+    render(`<div class="result-card"><h2>Your Birth Time Unknown Guide</h2><p>Based on ${date}, ${place}, and your time status: ${timeStatus}. Your main question is: ${question}</p></div>
+    <div class="result-card"><h3>You can usually still read</h3>${list(["Sun sign","Many planet sign placements","General element balance","Some broad personality themes"])}<h3>Uncertain or unavailable</h3>${list(["Rising sign / Ascendant","House positions","Midheaven","Time-sensitive Moon sign in some cases"])}<h3>Best next step</h3><p>If your time is approximate, treat Rising sign and houses as uncertain. If you have no time, use sign placements and general themes first. Search birth records only if you need a precise natal chart.</p></div>`);
   }
 }
 window.runAdvancedTool=runAdvancedTool;
