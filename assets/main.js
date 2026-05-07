@@ -88,7 +88,7 @@ window.runTool=runTool;
 
 
 
-/* V9 Advanced Astrology Tools */
+/* Advanced Astrology Tools */
 const ASTRO_SIGNS = ["Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"];
 const PLANETS = ["Sun","Moon","Mercury","Venus","Mars","Jupiter","Saturn","Uranus","Neptune","Pluto"];
 const ASPECTS = ["Conjunction","Sextile","Square","Trine","Opposition"];
