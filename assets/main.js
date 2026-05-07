@@ -171,8 +171,9 @@ function runAdvancedTool(type){
     const place=getVal("birthPlaceUnknown")||"your birth place";
     const question=getVal("mainQuestion")||"which parts of my chart can I still read?";
     const approxLine = approx ? ` You entered an approximate time: ${approx}.` : "";
-    const nextStep = timeStatus.includes("approximate")
-      ? "Because your time is approximate, Rising sign and house positions may be close but should still be treated as uncertain. Use them as learning clues, not final chart data."
+    const hasApprox = approx.length > 0;
+    const nextStep = hasApprox || timeStatus.includes("approximate")
+      ? "Because you entered an approximate time, Rising sign and house positions may be closer, but they should still be treated as uncertain unless the time is exact and verified. Use them as learning clues, not final chart data."
       : timeStatus.includes("morning")
       ? "A broad time window can sometimes narrow possibilities, but Rising sign and houses remain uncertain. Use sign placements first."
       : "With no birth time, use Sun sign, many planet sign placements and general themes first. Rising sign, houses and Midheaven should be left unknown.";
