@@ -167,10 +167,17 @@ function runAdvancedTool(type){
   if(type==="advancedBirthTime"){
     const date=getVal("birthDateUnknown")||"your birth date";
     const timeStatus=getVal("timeStatus")||"I do not know my birth time";
+    const approx=getVal("approxBirthTime");
     const place=getVal("birthPlaceUnknown")||"your birth place";
     const question=getVal("mainQuestion")||"which parts of my chart can I still read?";
-    render(`<div class="result-card"><h2>Your Birth Time Unknown Guide</h2><p>Based on ${date}, ${place}, and your time status: ${timeStatus}. Your main question is: ${question}</p></div>
-    <div class="result-card"><h3>You can usually still read</h3>${list(["Sun sign","Many planet sign placements","General element balance","Some broad personality themes"])}<h3>Uncertain or unavailable</h3>${list(["Rising sign / Ascendant","House positions","Midheaven","Time-sensitive Moon sign in some cases"])}<h3>Best next step</h3><p>If your time is approximate, treat Rising sign and houses as uncertain. If you have no time, use sign placements and general themes first. Search birth records only if you need a precise natal chart.</p></div>`);
+    const approxLine = approx ? ` You entered an approximate time: ${approx}.` : "";
+    const nextStep = timeStatus.includes("approximate")
+      ? "Because your time is approximate, Rising sign and house positions may be close but should still be treated as uncertain. Use them as learning clues, not final chart data."
+      : timeStatus.includes("morning")
+      ? "A broad time window can sometimes narrow possibilities, but Rising sign and houses remain uncertain. Use sign placements first."
+      : "With no birth time, use Sun sign, many planet sign placements and general themes first. Rising sign, houses and Midheaven should be left unknown.";
+    render(`<div class="result-card"><h2>Your Birth Time Unknown Guide</h2><p>Based on ${date}, ${place}, and your time status: ${timeStatus}.${approxLine} Your main question is: ${question}</p></div>
+    <div class="result-card"><h3>You can usually still read</h3>${list(["Sun sign","Many planet sign placements","General element balance","Some broad personality themes"])}<h3>Uncertain or unavailable</h3>${list(["Rising sign / Ascendant","House positions","Midheaven","Time-sensitive Moon sign in some cases"])}<h3>Best next step</h3><p>${nextStep}</p></div>`);
   }
 }
 window.runAdvancedTool=runAdvancedTool;
