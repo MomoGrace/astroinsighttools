@@ -1,21 +1,27 @@
-AstroInsightTools V7 Clean Full Site
+AstroInsightTools V8 Full HTML 90+ Version
 
-Use this package as a clean reset.
+This is a complete static HTML site, not a patch.
 
-Recommended GitHub steps:
-1. Delete old repository files/folders first.
-2. Upload only the contents of this unzipped folder.
-3. Do not upload any previous patch packages.
-4. Make sure there is NO _redirects file.
-5. Commit message: Reset to V7 clean full site
-6. Wait for Cloudflare Pages to redeploy.
+Recommended upload method:
+1. Use GitHub Desktop Show in Explorer.
+2. Delete old files in the repo folder, but do not delete the hidden .git folder.
+3. Copy all contents of this unzipped folder into the repo root.
+4. Make sure there is no _redirects file.
+5. Commit message: Reset to V8 full HTML 90plus
+6. Push origin.
+7. Wait for Cloudflare Pages to redeploy.
 
-Main stable URLs:
-/
+Stable test URLs:
+/index.html
 /tools/index.html
 /articles/index.html
-/about.html
-/contact.html
+/tools/zodiac-sign-calculator.html
+/tools/zodiac-compatibility-calculator.html
+/tools/life-path-number-calculator.html
+/articles/zodiac-sign-dates-and-meanings.html
+/articles/zodiac-compatibility-guide.html
+/articles/life-path-number-meanings.html
 /privacy.html
 /terms.html
-/disclaimer.html
+/ads.txt
+/sitemap.xml
