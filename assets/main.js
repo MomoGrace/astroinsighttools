@@ -85,3 +85,85 @@ function runTool(type){
   }
 }
 window.runTool=runTool;
+
+
+
+/* V9 Advanced Astrology Tools */
+const ASTRO_SIGNS = ["Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"];
+const PLANETS = ["Sun","Moon","Mercury","Venus","Mars","Jupiter","Saturn","Uranus","Neptune","Pluto"];
+const ASPECTS = ["Conjunction","Sextile","Square","Trine","Opposition"];
+
+const SIGN_DEEP = {
+  Aries:{element:"Fire", mode:"Cardinal", tone:"direct, brave and action-oriented", gift:"starting before fear becomes too loud", blind:"rushing past nuance", need:"honest momentum and room to act"},
+  Taurus:{element:"Earth", mode:"Fixed", tone:"steady, sensual and loyal", gift:"building comfort that lasts", blind:"staying too long in familiar patterns", need:"trust, patience and physical calm"},
+  Gemini:{element:"Air", mode:"Mutable", tone:"curious, verbal and adaptable", gift:"making connections between ideas", blind:"scattering energy or avoiding depth", need:"conversation, variety and mental freshness"},
+  Cancer:{element:"Water", mode:"Cardinal", tone:"protective, intuitive and emotionally aware", gift:"creating safety and memory", blind:"retreating instead of naming needs", need:"emotional gentleness and belonging"},
+  Leo:{element:"Fire", mode:"Fixed", tone:"warm, expressive and proud-hearted", gift:"radiating courage and creativity", blind:"needing applause to feel safe", need:"loyalty, play and sincere appreciation"},
+  Virgo:{element:"Earth", mode:"Mutable", tone:"precise, observant and service-minded", gift:"improving what others overlook", blind:"self-criticism and perfection pressure", need:"usefulness, order and grounded care"},
+  Libra:{element:"Air", mode:"Cardinal", tone:"relational, aesthetic and diplomatic", gift:"building bridges and restoring balance", blind:"over-pleasing or delaying decisions", need:"fairness, beauty and mutual respect"},
+  Scorpio:{element:"Water", mode:"Fixed", tone:"intense, private and transformative", gift:"going below the surface", blind:"testing trust instead of building it slowly", need:"truth, loyalty and emotional depth"},
+  Sagittarius:{element:"Fire", mode:"Mutable", tone:"adventurous, honest and future-seeking", gift:"expanding meaning and possibility", blind:"restlessness or blunt escape", need:"freedom, humour and shared discovery"},
+  Capricorn:{element:"Earth", mode:"Cardinal", tone:"disciplined, strategic and resilient", gift:"turning time into achievement", blind:"carrying too much alone", need:"respect, consistency and long-range purpose"},
+  Aquarius:{element:"Air", mode:"Fixed", tone:"independent, original and future-minded", gift:"seeing systems from the outside", blind:"detachment or rigid ideals", need:"space, friendship and intellectual honesty"},
+  Pisces:{element:"Water", mode:"Mutable", tone:"empathetic, imaginative and spiritually porous", gift:"feeling what others miss", blind:"blurred boundaries and avoidance", need:"compassion, art and emotional sanctuary"}
+};
+
+const PLANET_MEANING = {
+  Sun:{domain:"identity, vitality and conscious direction", question:"Who am I becoming when I act from my center?", relationship:"shows how you shine and where you want to be recognized", growth:"practice confidence without turning identity into performance"},
+  Moon:{domain:"emotional needs, comfort and instinctive reactions", question:"What makes me feel safe enough to be honest?", relationship:"shows what you need when vulnerable", growth:"build emotional habits that soothe without trapping you"},
+  Mercury:{domain:"thinking, language, learning and communication", question:"How do I process information and express ideas?", relationship:"shows how you explain, listen and handle misunderstanding", growth:"communicate with clarity instead of reflex"},
+  Venus:{domain:"love style, pleasure, beauty and attraction", question:"What kind of affection helps me open naturally?", relationship:"shows how you give and receive love", growth:"choose love patterns that feel warm, not addictive"},
+  Mars:{domain:"action, desire, conflict and motivation", question:"How do I pursue what I want?", relationship:"shows attraction, anger and initiative", growth:"use desire with courage and self-control"},
+  Jupiter:{domain:"growth, belief, opportunity and meaning", question:"Where do I expand when I trust life?", relationship:"shows generosity and shared belief systems", growth:"grow without exaggerating or over-promising"},
+  Saturn:{domain:"discipline, boundaries, responsibility and maturity", question:"Where does life ask me to become stronger?", relationship:"shows commitment, fear and long-term lessons", growth:"turn pressure into structure instead of shame"},
+  Uranus:{domain:"freedom, disruption, originality and awakening", question:"Where do I need more honesty and space?", relationship:"shows independence needs and sudden change", growth:"innovate without destabilizing everything"},
+  Neptune:{domain:"imagination, spirituality, longing and idealization", question:"What dream inspires me, and where do I need clarity?", relationship:"shows compassion and projection", growth:"keep inspiration while checking reality"},
+  Pluto:{domain:"power, transformation, intensity and deep change", question:"Where am I being asked to transform, not just cope?", relationship:"shows control, trust and psychological depth", growth:"release what controls you from underneath"}
+};
+
+function optionList(arr){ return arr.map(x=>`<option>${x}</option>`).join(""); }
+function signBlock(sign, label){
+  const s = SIGN_DEEP[sign] || SIGN_DEEP.Aries;
+  return `<div class="result-card"><h3>${label}: ${sign}</h3><div class="pill-row"><span class="pill">${s.element}</span><span class="pill">${s.mode}</span></div><p>${sign} is ${s.tone}. Its gift is ${s.gift}; its blind spot can be ${s.blind}. It often needs ${s.need}.</p></div>`;
+}
+function runAdvancedTool(type){
+  if(type==="advancedBigThree"){
+    const sun=getVal("sunSign"), moon=getVal("moonSign"), rising=getVal("risingSign");
+    render(`<div class="result-card"><h2>Your Big Three Profile</h2><p>Your Big Three combines identity, emotional needs and outer style. Read this as a layered self-reflection map, not a fixed personality label.</p></div>
+    ${signBlock(sun,"Sun / identity style")}
+    ${signBlock(moon,"Moon / emotional needs")}
+    ${signBlock(rising,"Rising / outer style")}
+    <div class="result-card"><h3>How these three work together</h3><p>Your Sun describes what you are growing into, your Moon describes what keeps you emotionally safe, and your Rising describes how you enter situations. Growth happens when these three parts can cooperate instead of competing.</p><h3>Journal prompt</h3><p>Which part of my Big Three do I show easily, and which part needs more care?</p></div>`);
+  }
+  if(type==="advancedPlanetSign"){
+    const planet=getVal("planet"), sign=getVal("sign"); const p=PLANET_MEANING[planet] || PLANET_MEANING.Sun; const s=SIGN_DEEP[sign]||SIGN_DEEP.Aries;
+    render(`<div class="result-card"><h2>${planet} in ${sign}</h2><p>${planet} represents ${p.domain}. In ${sign}, it expresses through a ${s.tone} style.</p></div>
+    <div class="result-card"><h3>Core meaning</h3><p>This placement blends ${planet}'s focus on ${p.domain} with ${sign}'s need for ${s.need}. It can show ${s.gift}, but may struggle with ${s.blind}.</p><h3>Relationship angle</h3><p>${p.relationship}.</p><h3>Growth advice</h3><p>${p.growth}. Ask: ${p.question}</p></div>`);
+  }
+  if(type==="advancedSingleSign"){
+    const sign=getVal("singleSign"); const page=document.body.dataset.advanced||"Moon"; const p=PLANET_MEANING[page] || PLANET_MEANING.Moon; const s=SIGN_DEEP[sign]||SIGN_DEEP.Aries;
+    render(`<div class="result-card"><h2>${page} in ${sign}</h2><p>${page} describes ${p.domain}. In ${sign}, the pattern becomes ${s.tone}.</p></div>
+    <div class="result-card"><h3>Strengths</h3><p>${s.gift} can become a clear strength when it is grounded in real choices.</p><h3>Blind spot</h3><p>Watch for ${s.blind}. This is not a flaw; it is a growth edge.</p><h3>Love and life pattern</h3><p>${p.relationship}. You may need ${s.need} to feel natural and expressive.</p><h3>Journal prompt</h3><p>${p.question}</p></div>`);
+  }
+  if(type==="advancedAspect"){
+    const a=getVal("planetA"), b=getVal("planetB"), aspect=getVal("aspect");
+    const flow = aspect==="Trine"||aspect==="Sextile" ? "flow and natural support" : aspect==="Square"||aspect==="Opposition" ? "tension that asks for integration" : "a strong merging of two planetary drives";
+    render(`<div class="result-card"><h2>${a} ${aspect} ${b}</h2><p>This aspect suggests ${flow} between ${a}'s themes and ${b}'s themes.</p></div>
+    <div class="result-card"><h3>Core meaning</h3><p>${a} relates to ${(PLANET_MEANING[a]||PLANET_MEANING.Sun).domain}. ${b} relates to ${(PLANET_MEANING[b]||PLANET_MEANING.Moon).domain}. The ${aspect} shows how these two areas interact.</p><h3>Strength</h3><p>The aspect can create awareness and motivation when handled consciously.</p><h3>Challenge</h3><p>The same pattern can repeat automatically if you do not name the need underneath it.</p><h3>Growth prompt</h3><p>How can these two parts of me cooperate instead of pulling in separate directions?</p></div>`);
+  }
+  if(type==="advancedHouse"){
+    const planet=getVal("planet"), house=getVal("house"); const p=PLANET_MEANING[planet]||PLANET_MEANING.Sun;
+    const houseMeanings={1:"identity, body and first impressions",2:"money, values and security",3:"communication, siblings and learning",4:"home, roots and emotional foundations",5:"creativity, romance and joy",6:"work habits, health routines and service",7:"partnerships and one-to-one bonds",8:"shared resources, intimacy and transformation",9:"beliefs, travel and higher learning",10:"career, reputation and public role",11:"friends, networks and future vision",12:"solitude, dreams and the unconscious"};
+    render(`<div class="result-card"><h2>${planet} in the ${house} House</h2><p>${planet} represents ${p.domain}. The ${house} house points to ${houseMeanings[house]||houseMeanings[1]}.</p></div>
+    <div class="result-card"><h3>Life area affected</h3><p>This placement suggests that ${p.domain} becomes visible through ${houseMeanings[house]||houseMeanings[1]}.</p><h3>Strength</h3><p>You may bring strong awareness or energy into this life area.</p><h3>Growth advice</h3><p>${p.growth}. Ask: ${p.question}</p></div>`);
+  }
+  if(type==="advancedChecklist"){
+    render(`<div class="result-card"><h2>Natal Chart Reading Checklist</h2><p>Read a chart in layers. Do not try to understand every symbol at once.</p></div>
+    <div class="result-card"><h3>Step-by-step order</h3>${list(["Sun: identity and life direction","Moon: emotional needs and comfort","Rising: outer style and first approach","Mercury: thinking and communication","Venus: love, attraction and pleasure","Mars: action, desire and conflict","Houses: where themes show up in life","Aspects: how planets interact"])}<h3>Best practice</h3><p>Write one sentence per layer before combining everything.</p></div>`);
+  }
+  if(type==="advancedBirthTime"){
+    render(`<div class="result-card"><h2>If Birth Time Is Unknown</h2><p>You can still read some parts of a chart, but not everything accurately.</p></div>
+    <div class="result-card"><h3>You can usually still read</h3>${list(["Sun sign","Many planet sign placements","General element balance","Some broad personality themes"])}<h3>Uncertain or unavailable</h3>${list(["Rising sign / Ascendant","House positions","Midheaven","Time-sensitive Moon sign in some cases"])}<h3>Best next step</h3><p>Use a noon chart for learning only, or search birth records if you need a precise chart.</p></div>`);
+  }
+}
+window.runAdvancedTool=runAdvancedTool;
