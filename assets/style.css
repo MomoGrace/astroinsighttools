@@ -60,6 +60,9 @@ a{color:inherit}
 .section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:28px}
 .section h2{font-size:clamp(2rem,4vw,3.1rem);line-height:1.05;margin:0 0 10px;letter-spacing:-.045em}
 .muted{color:var(--muted)}
+.home-advanced-tools .section-head h2{color:#f8faff;text-shadow:0 2px 14px rgba(7,11,24,.35)}
+.home-advanced-tools .section-head .muted{color:rgba(248,250,255,.9)}
+
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
 .card:before{content:"";position:absolute;left:0;top:0;width:100%;height:4px;background:linear-gradient(90deg,#7d6bff,#ffd76a)}
