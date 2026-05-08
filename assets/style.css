@@ -75,7 +75,7 @@ a{color:inherit}
 .content{max-width:980px;margin:0 auto 60px;background:#fff;border:1px solid var(--line);border-radius:28px;padding:34px;box-shadow:var(--shadow)}
 .content h2{font-size:2rem;line-height:1.15;margin:34px 0 10px;letter-spacing:-.03em}
 .content h3{font-size:1.43rem;margin:28px 0 8px}
-.content p,.content li{color:#4b5563}
+.content p,.content li{color:#4b5563;text-align:left;letter-spacing:normal;word-spacing:normal;word-break:normal;overflow-wrap:normal}
 .content table{width:100%;border-collapse:collapse;margin:20px 0;background:#fff}
 .content th,.content td{border:1px solid #e5e7eb;padding:12px;text-align:left;vertical-align:top}
 .content th{background:#f6f4ff;color:#26204f}
